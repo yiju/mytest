@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#merge machine on dev environment
+merge=cumulus@52.4.64.46
+
+#logs to the standard logs
+echo “Reanalysis is about to start at $1”
+
+#path to reanalysis script
+exec_bin=/home/cumulus/data/app/processing-pipeline/run_reanalysis_aws
+
+#ssh to merge and execute the reanalysis script
+#ssh $merge -P mooredna “$exec_bin $1” </dev/null&
+#ssh $merge “$exec_bin $1” </dev/null&
+ssh $merge "$exec_bin $1" </dev/null&
+
+#log to the standard logs
+echo "Reanalysis initiated at merge server for $1"
